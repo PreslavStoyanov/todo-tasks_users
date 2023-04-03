@@ -23,7 +23,7 @@ public class UserController
     }
 
     @GetMapping
-    public User getUserById(@RequestParam String id)
+    public User getUserById(@RequestParam int id)
     {
         return userService.getUserById(id);
     }

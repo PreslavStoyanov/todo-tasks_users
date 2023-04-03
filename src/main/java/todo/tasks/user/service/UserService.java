@@ -20,7 +20,7 @@ public class UserService
         userRepository.createUser(name);
     }
 
-    public User getUserById(String id)
+    public User getUserById(int id)
     {
         return userRepository.getUserById(id);
     }

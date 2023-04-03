@@ -33,7 +33,7 @@ public class UserRepository
         namedParameterJdbcTemplate.update(sql, sqlParameterSource);
     }
 
-    public User getUserById(String id)
+    public User getUserById(int id)
     {
         String sql = "SELECT * FROM users WHERE id = :id";
 
@@ -50,7 +50,7 @@ public class UserRepository
         public User mapRow(ResultSet rs, int rowNum) throws SQLException
         {
             return new User(
-                    rs.getString("id"),
+                    rs.getInt("id"),
                     rs.getString("name"));
         }
     }
