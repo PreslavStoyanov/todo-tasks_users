@@ -9,6 +9,7 @@ import todo.tasks.user.repository.model.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 @Repository
 public class UserRepository
@@ -41,6 +42,24 @@ public class UserRepository
                 .addValue("id", id);
 
         return namedParameterJdbcTemplate.queryForObject(sql, sqlParameterSource, userRowMapper);
+    }
+
+    public List<User> getUsers()
+    {
+        String sql = "SELECT * FROM users";
+
+        return namedParameterJdbcTemplate.query(sql, userRowMapper);
+    }
+
+    public void updateUserById(int id, String name)
+    {
+        String sql = "UPDATE users SET name = :name WHERE id = :id";
+
+        SqlParameterSource sqlParameterSource = new MapSqlParameterSource()
+                .addValue("id", id)
+                .addValue("name", name);
+
+        namedParameterJdbcTemplate.update(sql, sqlParameterSource);
     }
 
     private static class UserRowMapper implements RowMapper<User>
