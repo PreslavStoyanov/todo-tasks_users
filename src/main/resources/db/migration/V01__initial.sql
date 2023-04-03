@@ -1,4 +1,5 @@
-CREATE TABLE users(
-    id varchar(255) PRIMARY KEY,
-    name varchar(255)
+CREATE TABLE users (
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id)
 );
