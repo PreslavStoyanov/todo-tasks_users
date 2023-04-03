@@ -3,7 +3,7 @@ package todo.tasks.user.application;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "todo.tasks.user")
 public class UserApplication
 {
 
