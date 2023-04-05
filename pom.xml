@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>todo.tasks</groupId>
-    <artifactId>user</artifactId>
+    <artifactId>user-todos</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>user</name>
     <description>user</description>
@@ -32,6 +32,7 @@
             <scope>test</scope>
         </dependency>
         <!--Spring-->
+
         <!--DB-->
         <dependency>
             <groupId>mysql</groupId>
@@ -58,6 +59,12 @@
             <version>1.6.15</version>
         </dependency>
         <!--Swagger-->
+
+        <dependency>
+            <groupId>org.apache.httpcomponents.client5</groupId>
+            <artifactId>httpclient5</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -73,23 +80,8 @@
                 <executions>
                     <execution>
                         <phase>generate-sources</phase>
-                        <goals>
-                            <goal>migrate</goal>
-                        </goals>
                     </execution>
                 </executions>
-                <configuration>
-                    <driver>com.mysql.cj.jdbc.Driver</driver>
-                    <url>jdbc:mysql://localhost:3306/user</url>
-                    <user>root</user>
-                    <password>root</password>
-                    <baselineOnMigrate>true</baselineOnMigrate>
-                    <locations>
-                        <location>
-                            filesystem:src/main/resources/db/migration
-                        </location>
-                    </locations>
-                </configuration>
             </plugin>
         </plugins>
     </build>
