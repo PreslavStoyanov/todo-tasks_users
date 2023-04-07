@@ -33,6 +33,12 @@ public class ToDoController
         toDoService.updateToDo(id, status);
     }
 
+    @DeleteMapping("{id}")
+    public void deleteToDo(@PathVariable int id)
+    {
+        toDoService.deleteToDo(id);
+    }
+
     @GetMapping
     public List<ToDo> getUserToDos(@RequestParam int userId)
     {

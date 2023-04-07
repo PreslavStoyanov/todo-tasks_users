@@ -66,6 +66,16 @@ public class ToDoRepository
         return namedParameterJdbcTemplate.query(sql, sqlParameterSource, toDoRowMapper);
     }
 
+    public void deleteToDo(int id)
+    {
+        String sql = "DELETE FROM todos WHERE id = :id";
+
+        SqlParameterSource sqlParameterSource = new MapSqlParameterSource()
+                .addValue("id", id);
+
+        namedParameterJdbcTemplate.update(sql, sqlParameterSource);
+    }
+
     private static class ToDoRowMapper implements RowMapper<ToDo>
     {
 
