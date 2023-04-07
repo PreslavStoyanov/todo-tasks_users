@@ -24,13 +24,23 @@ public class ToDoService
         toDoRepository.createToDo(toDoInput.userId(), toDoInput.name(), toDoInput.summary(), toDoInput.status());
     }
 
-    public void updateToDo(int id, ToDoStatus status)
+    public void updateToDoStatus(int id, ToDoStatus status)
     {
-        toDoRepository.updateToDo(id, status);
+        toDoRepository.updateToDoStatus(id, status);
     }
 
     public List<ToDo> getUserToDos(int userId)
     {
         return toDoRepository.getUserToDos(userId);
+    }
+
+    public void deleteToDo(int id)
+    {
+        toDoRepository.deleteToDo(id);
+    }
+
+    public void updateToDo(int id, ToDoInput toDoInput)
+    {
+        toDoRepository.updateToDo(id, toDoInput.userId(), toDoInput.name(), toDoInput.summary(), toDoInput.status());
     }
 }

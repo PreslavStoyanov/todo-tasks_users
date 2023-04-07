@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/todos")
+@CrossOrigin
 public class ToDoController
 {
 
@@ -26,10 +27,22 @@ public class ToDoController
         toDoService.createToDo(toDoInput);
     }
 
-    @PutMapping("{id}")
-    public void updateToDo(@PathVariable int id, @RequestParam ToDoStatus status)
+    @PatchMapping("{id}")
+    public void updateToDoStatus(@PathVariable int id, @RequestParam ToDoStatus status)
     {
-        toDoService.updateToDo(id, status);
+        toDoService.updateToDoStatus(id, status);
+    }
+
+    @PutMapping("{id}")
+    public void updateToDo(@PathVariable int id, @RequestBody ToDoInput toDoInput)
+    {
+        toDoService.updateToDo(id, toDoInput);
+    }
+
+    @DeleteMapping("{id}")
+    public void deleteToDo(@PathVariable int id)
+    {
+        toDoService.deleteToDo(id);
     }
 
     @GetMapping

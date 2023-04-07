@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
+import todo.tasks.user.controller.model.ToDoInput;
 import todo.tasks.user.repository.model.ToDo;
 import todo.tasks.user.repository.model.ToDoStatus;
 
@@ -41,7 +42,7 @@ public class ToDoRepository
         namedParameterJdbcTemplate.update(sql, sqlParameterSource);
     }
 
-    public void updateToDo(int id, ToDoStatus status)
+    public void updateToDoStatus(int id, ToDoStatus status)
     {
         String sql = "UPDATE todos SET status = :status WHERE id = :id";
 
@@ -64,6 +65,37 @@ public class ToDoRepository
                 .addValue("user_id", userId);
 
         return namedParameterJdbcTemplate.query(sql, sqlParameterSource, toDoRowMapper);
+    }
+
+    public void deleteToDo(int id)
+    {
+        String sql = "DELETE FROM todos WHERE id = :id";
+
+        SqlParameterSource sqlParameterSource = new MapSqlParameterSource()
+                .addValue("id", id);
+
+        namedParameterJdbcTemplate.update(sql, sqlParameterSource);
+    }
+
+    public void updateToDo(int id, int userId, String name, String summary, ToDoStatus status)
+    {
+        String sql = """
+                UPDATE todos
+                SET user_id = :userId,
+                    name = :name,
+                    summary = :summary,
+                    status = :status
+                WHERE id = :id
+                """;
+
+        SqlParameterSource sqlParameterSource = new MapSqlParameterSource()
+                .addValue("id", id)
+                .addValue("user_id", userId)
+                .addValue("name", name)
+                .addValue("summary", summary)
+                .addValue("status", status.name());
+
+        namedParameterJdbcTemplate.update(sql, sqlParameterSource);
     }
 
     private static class ToDoRowMapper implements RowMapper<ToDo>

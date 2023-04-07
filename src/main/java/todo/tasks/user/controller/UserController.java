@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/users")
+@CrossOrigin
 public class UserController
 {
 
@@ -41,5 +42,11 @@ public class UserController
     public void updateUser(@PathVariable int id, @RequestBody UserInput userInput)
     {
         userService.updateUser(id, userInput);
+    }
+
+    @DeleteMapping("{id}")
+    public void deleteUser(@PathVariable int id)
+    {
+        userService.deleteUser(id);
     }
 }

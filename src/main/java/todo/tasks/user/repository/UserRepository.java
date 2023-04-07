@@ -62,6 +62,16 @@ public class UserRepository
         namedParameterJdbcTemplate.update(sql, sqlParameterSource);
     }
 
+    public void deleteUser(int id)
+    {
+        String sql = "DELETE FROM users WHERE id = :id";
+
+        SqlParameterSource sqlParameterSource = new MapSqlParameterSource()
+                .addValue("id", id);
+
+        namedParameterJdbcTemplate.update(sql, sqlParameterSource);
+    }
+
     private static class UserRowMapper implements RowMapper<User>
     {
 
