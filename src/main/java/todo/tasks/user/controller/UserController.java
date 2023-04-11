@@ -21,9 +21,9 @@ public class UserController
     }
 
     @PostMapping
-    public void createUser(@RequestParam String name)
+    public void createUser(@RequestBody UserInput userInput)
     {
-        userService.createUser(name);
+        userService.createUser(userInput);
     }
 
     @GetMapping

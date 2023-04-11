@@ -18,9 +18,9 @@ public class UserService
         this.userRepository = userRepository;
     }
 
-    public void createUser(String name)
+    public void createUser(UserInput userInput)
     {
-        userRepository.createUser(name);
+        userRepository.createUser(userInput.name());
     }
 
     public User getUserById(int id)
